@@ -1,0 +1,45 @@
+service:
+  name: serverless-demo
+
+plugins:
+  - serverless-bundle
+  - serverless-pseudo-parameters
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+  memorySize: 256
+  stage: ${opt:stage, 'dev'}
+  region: us-west-2
+  environment:
+    PLANETA_TABLE_NAME: ${self:custom.PlanetaTable.name}
+  iamRoleStatements:
+    - ${file(iam/PlanetaTableIAM.yml):PlanetaTableIAM}
+resources:
+  Resources:
+    PlanetaTable: ${file(resources/PlanetaTable.yml):PlanetaTable}
+functions:
+  createPlaneta:
+    handler: src/handlers/createPlaneta.handler
+    events:
+      - http:
+          method: POST
+          path: /planeta
+  getPlanetas:
+    handler: src/handlers/getPlanetas.handler
+    events:
+      - http:
+          method: GET
+          path: /planetas
+  getPlaneta:
+    handler: src/handlers/getPlaneta.handler
+    events:
+      - http:
+          method: GET
+          path: /planeta/{id}
+custom:
+  PlanetaTable:
+    name: !Ref PlanetaTable
+    arn: !GetAtt PlanetaTable.Arn
+  bundle: 
+    linting: false
