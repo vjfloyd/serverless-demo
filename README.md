@@ -1,17 +1,19 @@
-# Codingly.io: Base Serverless Framework Template
+# Demo Rimac 
 
-https://codingly.io
+Demo empleado el framework Serverless 
 
-## What's included
-* Folder structure used consistently across our projects.
-* [serverless-pseudo-parameters plugin](https://www.npmjs.com/package/serverless-pseudo-parameters): Allows you to take advantage of CloudFormation Pseudo Parameters.
-* [serverless-bundle plugin](https://www.npmjs.com/package/serverless-pseudo-parameters): Bundler based on the serverless-webpack plugin - requires zero configuration and fully compatible with ES6/ES7 features.
+## Contenido
+* Permite desplegar en AWS la arquitectura planteada en el reto
+* Exposición de 3 endpoint para la consulta y persistencia en Dynamo de AWS
+* Como entiedad a persistir en dynamo se utilizo los atributos de la entidad Planet del api de Starwars
 
-## Getting started
+## Desplegar y probar con el comando
 ```
-sls create --name YOUR_PROJECT_NAME --template-url https://github.com/codingly-io/sls-base
-cd YOUR_PROJECT_NAME
-npm install
+sls deploy -v
 ```
+## Endpoint implementados
+{{HOST}}/planetas       GET
+{{HOST}}/planeta        POST
+{{HOST}}/planeta/id     GET
 
 You are ready to go!
