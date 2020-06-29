@@ -12,8 +12,8 @@ Demo empleado el framework Serverless
 sls deploy -v
 ```
 ## Endpoint implementados
-{{HOST}}/planetas       GET
-{{HOST}}/planeta        POST
-{{HOST}}/planeta/id     GET
+* {{HOST}}/planetas       GET
+* {{HOST}}/planeta        POST
+* {{HOST}}/planeta/id     GET
 
-You are ready to go!
+
